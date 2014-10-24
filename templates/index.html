@@ -1,0 +1,40 @@
+<html>
+    <head>
+         <title>Simple chat</title>
+         <link rel=stylesheet href=/static/style.css type=text/css>
+         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+         <div id = "header">
+             <h1>Welcome to simple chat, choose a channel</h1>
+         </div>
+
+         <div id = "main">
+             <div id = "channels">
+
+                  <form id= "Search_channel_Form" action = "/search_channel" method = "post" >
+                      <input name="search_channel">
+                      <p><input type = "submit" value = "Search channel"></p>
+                  </form>
+
+                 {% if channels %}
+                     <ul>
+                          {% for channel in channels %}
+                          <li><a href = "/channel/{{channel.channel_name}}">{{channel.channel_name}}</a></li>
+                          {% endfor %}
+                     </ul>
+                 {% else %}
+                     <strong>There are no channels present.</strong><br />
+                 {% endif %}
+
+                 <form id= "Add_channel_Form" action = "/add_channel" method = "post" >
+                     <input name="channel_name"> 
+                     <p><input type = "submit" value = "Add channel"></p>
+                 </form>
+
+
+             </div>
+         </div>
+    </body>
+</html> 
